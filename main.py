@@ -16,13 +16,13 @@ def main(args):
     global_step = framework.get_or_create_global_step()
 
     # Tensor that holds raw camera frame
-    image_input = tf.placeholder(tf.float32, shape=[None, None, 3], name='input')
+    image_input = tf.placeholder(tf.float32, shape=[None, None, 3], name='input_placeholder')
     input_size = tf.shape(image_input)[:2]
     batched_input = tf.expand_dims(image_input, 0)
     resized_im = tf.image.resize_images(batched_input, IMAGE_SIZE)
 
     # Placeholder for target
-    label_placeholder = tf.placeholder(tf.float32, shape=[None, None, 3], name='input')
+    label_placeholder = tf.placeholder(tf.float32, shape=[None, None, 3], name='label_placeholder')
     batched_label = tf.expand_dims(label_placeholder, 0)
     resized_label = tf.image.resize_images(batched_label, IMAGE_SIZE)
 
